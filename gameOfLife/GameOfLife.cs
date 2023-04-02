@@ -8,7 +8,7 @@ namespace gameOfLife
 {
 	class GameOfLife
 	{
-		bool[,] _playArea = new bool[25, 70];
+		bool[,] _playArea = new bool[25, 90];
 
 		public GameOfLife()
 		{
@@ -19,7 +19,7 @@ namespace gameOfLife
 			{
 				for (int j = 1; j < _playArea.GetLength(1) - 1; j++)
 				{
-					_playArea[i, j] = (random.Next(0,10) == 1);
+					_playArea[i, j] = (random.Next(0,5) == 1);
 				}
 			}
 		}
@@ -51,7 +51,7 @@ namespace gameOfLife
                     if (_playArea[i, j])
 					{
 						if (cells == 2 || cells == 3) nextPlayArea[i, j] = true;
-					}
+                    }
                     else
 					{
 						if (cells == 3) nextPlayArea[i, j] = true;
@@ -70,7 +70,7 @@ namespace gameOfLife
 			{
 				for (int j = y - 1; j <= y + 1; j++)
 				{
-					if (_playArea[i, j]) cells++;
+					if ((i != x || j != y) && _playArea[i, j]) cells++;
 				}
 			}
 
@@ -85,7 +85,7 @@ namespace gameOfLife
 				for (int j = 0; j < _playArea.GetLength(1); j++)
 				{
                     if (_playArea[i, j]) area += "█";
-                    else area += "O";
+                    else area += " ";
                 }
 				area += "\n";
 			}

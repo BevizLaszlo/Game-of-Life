@@ -12,15 +12,16 @@ namespace gameOfLife
         static GameOfLife game = new GameOfLife();
         static void Main(string[] args)
         {
+            Console.CursorVisible = false;
 
-            timer.Interval = 1000;
+            timer.Interval = 100;
             timer.Elapsed += new System.Timers.ElapsedEventHandler(timer_Tick);
             timer.Start();
-            while (Console.Read() != 'q') ;
+            while (true) ;
         }
         static private void timer_Tick(object sender, System.Timers.ElapsedEventArgs e)
         {
-            Console.Clear();
+            Console.SetCursorPosition(0, 0);
             game.printArea();
             game.nextState();
         }
